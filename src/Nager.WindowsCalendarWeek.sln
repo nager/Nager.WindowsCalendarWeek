@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nager.WindowsCalendarWeek", "Nager.WindowsCalendarWeek\Nager.WindowsCalendarWeek.csproj", "{1077449C-969D-4055-B767-990893D4D462}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nager.WindowsCalendarWeekNet4", "Nager.WindowsCalendarWeekNet4\Nager.WindowsCalendarWeekNet4.csproj", "{2FE40F04-C6C4-447D-AF43-3866D2935441}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{1077449C-969D-4055-B767-990893D4D462}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1077449C-969D-4055-B767-990893D4D462}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1077449C-969D-4055-B767-990893D4D462}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FE40F04-C6C4-447D-AF43-3866D2935441}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FE40F04-C6C4-447D-AF43-3866D2935441}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FE40F04-C6C4-447D-AF43-3866D2935441}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FE40F04-C6C4-447D-AF43-3866D2935441}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

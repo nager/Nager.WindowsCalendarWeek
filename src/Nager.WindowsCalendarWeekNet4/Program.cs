@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
@@ -84,13 +85,23 @@ namespace Nager.WindowsCalendarWeek
             var ext = DateTime.Today.Month > 6 ? "-2" : "";
 
             var target = $"https://kalenderwoche.at/kalender/{DateTime.Today.Year}{ext}";
-            System.Diagnostics.Process.Start(target);
+
+            OpenBrowser(target);
         }
 
         private static void OpenHoliday()
         {
-            var target = $"https://date.nager.at/";
-            System.Diagnostics.Process.Start(target);
+            OpenBrowser("https://date.nager.at");
+        }
+
+        private static void OpenBrowser(string url)
+        {
+            var processStartInfo = new ProcessStartInfo("cmd", $"/c start {url}")
+            {
+                CreateNoWindow = true
+            };
+
+            Process.Start(processStartInfo);
         }
 
         private static Bitmap GetBitmapOfCurrentCalendarWeek()

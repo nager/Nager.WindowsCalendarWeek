@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1077449C-969D-4055-B767-990893D4D462}</ProjectGuid>
+    <ProjectGuid>{2FE40F04-C6C4-447D-AF43-3866D2935441}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Nager.WindowsCalendarWeek</RootNamespace>
     <AssemblyName>Nager.WindowsCalendarWeek</AssemblyName>
