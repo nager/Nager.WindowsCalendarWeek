@@ -10,7 +10,7 @@ namespace Nager.WindowsCalendarWeek
     {
         private static Timer RefreshIconTimer;
         private static NotifyIcon CalendarWeekNotifyIcon;
-        private static int OneDayMilliseconds = 86400000;
+        private static readonly int OneDayMilliseconds = 86400000;
 
         /// <summary>
         /// The main entry point for the application.

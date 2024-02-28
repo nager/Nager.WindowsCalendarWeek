@@ -5,15 +5,11 @@ namespace Nager.WindowsCalendarWeek;
 
 static class Program
 {
-    private static System.Windows.Forms.Timer RefreshIconTimer;
-    private static NotifyIcon CalendarWeekNotifyIcon;
-    private static int OneDayMilliseconds = 86400000;
+    private static readonly System.Windows.Forms.Timer RefreshIconTimer;
+    private static readonly NotifyIcon CalendarWeekNotifyIcon;
+    private static readonly int OneDayMilliseconds = 86400000;
 
-    /// <summary>
-    /// The main entry point for the application.
-    /// </summary>
-    [STAThread]
-    static void Main()
+    static Program()
     {
         var firstRefreshInterval = (int)(OneDayMilliseconds - Math.Floor(DateTime.Now.TimeOfDay.TotalMilliseconds));
 
@@ -38,27 +34,33 @@ static class Program
             },
             Visible = true
         };
+    }
+
+    /// <summary>
+    /// The main entry point for the application.
+    /// </summary>
+    [STAThread]
+    static void Main()
+    {
+
 
         CalendarWeekNotifyIcon.MouseClick += TrayIcon_Click;
 
         Application.Run();
     }
 
-    private static void RefreshIconTimer_Tick(object sender, EventArgs e)
+    private static void RefreshIconTimer_Tick(object? sender, EventArgs e)
     {
         RefreshIconTimer.Interval = OneDayMilliseconds;
 
         var oldIcon = CalendarWeekNotifyIcon.Icon;
-        if (oldIcon != null)
-        {
-            oldIcon.Dispose();
-        }
+        oldIcon?.Dispose();
 
         var bmp = GetBitmapOfCurrentCalendarWeek();
         CalendarWeekNotifyIcon.Icon = Icon.FromHandle(bmp.GetHicon());
     }
 
-    private static void TrayIcon_Click(object sender, MouseEventArgs e)
+    private static void TrayIcon_Click(object? sender, MouseEventArgs e)
     {
         if (e.Button == MouseButtons.Left)
         {
@@ -66,12 +68,12 @@ static class Program
         }
     }
 
-    private static void OnlineCalendarItemClickEvent(object sender, EventArgs e)
+    private static void OnlineCalendarItemClickEvent(object? sender, EventArgs e)
     {
         OpenOnlineCalendar();
     }
 
-    private static void HolidayItemClickEvent(object sender, EventArgs e)
+    private static void HolidayItemClickEvent(object? sender, EventArgs e)
     {
         OpenHoliday();
     }
@@ -136,7 +138,7 @@ static class Program
         return CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Now, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
     }
 
-    private static void QuitItemClickEvent(object sender, EventArgs e)
+    private static void QuitItemClickEvent(object? sender, EventArgs e)
     {
         Application.Exit();
     }
