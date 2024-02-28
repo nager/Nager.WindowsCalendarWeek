@@ -27,15 +27,11 @@ jobs:
       with:
         files: ./publish/temp
         dest: ./publish/Nager.WindowsCalendarWeek.zip
-    - name: Get the version
-      id: get_version
-      run: echo ::set-output name=tag::${GITHUB_REF/refs\/tags\//}
-      shell: bash
     - name: Upload binaries to release
       uses: svenstaro/upload-release-action@v2
       with:
         repo_name: nager/Nager.WindowsCalendarWeek
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: ./publish/Nager.WindowsCalendarWeek.zip
-        tag: ${{ steps.get_version.outputs.tag }}
+        tag: ${{ github.ref_name }}
         overwrite: true
