@@ -1,0 +1,43 @@
+name: 'Create Release'
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build-windows:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET 8.0
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+    - name: Restore dependencies
+      working-directory: ./src
+      run: dotnet restore
+    - name: Build
+      working-directory: ./src
+      run: dotnet build --configuration Release --no-restore /p:NoWarn=1591
+    - name: Build project
+      run: |
+        dotnet publish ./src/Nager.WindowsCalendarWeek/Nager.WindowsCalendarWeek.csproj --configuration Release --self-contained false --runtime win-x64 -p:PublishReadyToRun=true -p:PublishSingleFile=true --output ./publish/temp
+    - uses: vimtor/action-zip@v1
+      with:
+        files: ./publish/temp
+        dest: ./publish/Nager.WindowsCalendarWeek.zip
+    - name: Get the version
+      id: get_version
+      run: echo ::set-output name=tag::${GITHUB_REF/refs\/tags\//}
+      shell: bash
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_name: nager/Nager.WindowsCalendarWeek
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ./publish/Nager.WindowsCalendarWeek.zip
+        tag: ${{ steps.get_version.outputs.tag }}
+        overwrite: true
