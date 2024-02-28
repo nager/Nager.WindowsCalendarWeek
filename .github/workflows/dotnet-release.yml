@@ -21,7 +21,7 @@ jobs:
       run: dotnet restore
     - name: Build
       working-directory: ./src
-      run: dotnet build --configuration Release --no-restore /p:NoWarn=1591
+      run: dotnet build ./src/Nager.WindowsCalendarWeek/Nager.WindowsCalendarWeek.csproj --configuration Release --no-restore /p:NoWarn=1591
     - name: Build project
       run: |
         dotnet publish ./src/Nager.WindowsCalendarWeek/Nager.WindowsCalendarWeek.csproj --configuration Release --self-contained false --runtime win-x64 -p:PublishReadyToRun=true -p:PublishSingleFile=true --output ./publish/temp
