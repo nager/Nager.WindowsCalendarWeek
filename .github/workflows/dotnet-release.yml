@@ -21,10 +21,11 @@ jobs:
       run: dotnet restore
     - name: Build
       working-directory: ./src
-      run: dotnet build ./src/Nager.WindowsCalendarWeek/Nager.WindowsCalendarWeek.csproj --configuration Release --no-restore /p:NoWarn=1591
+      run: dotnet build ./Nager.WindowsCalendarWeek/Nager.WindowsCalendarWeek.csproj --configuration Release --no-restore /p:NoWarn=1591
     - name: Build project
+      working-directory: ./src
       run: |
-        dotnet publish ./src/Nager.WindowsCalendarWeek/Nager.WindowsCalendarWeek.csproj --configuration Release --self-contained false --runtime win-x64 -p:PublishReadyToRun=true -p:PublishSingleFile=true --output ./publish/temp
+        dotnet publish ./Nager.WindowsCalendarWeek/Nager.WindowsCalendarWeek.csproj --configuration Release --self-contained false --runtime win-x64 -p:PublishReadyToRun=true -p:PublishSingleFile=true --output ./publish/temp
     - uses: vimtor/action-zip@v1
       with:
         files: ./publish/temp
